@@ -125,3 +125,10 @@
     display: flex;
   }
 }
+/* Task title character counter */
+.character-count {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: right;
+}

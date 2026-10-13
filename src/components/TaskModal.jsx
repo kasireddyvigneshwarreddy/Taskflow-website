@@ -137,7 +137,11 @@ export const TaskModal = ({
               value={formData.title}
               onChange={(e) => handleChange('title', e.target.value)}
               maxLength={120}
+              
             />
+            <div className="character-count">
+             {formData.title.length}/120 characters
+            </div>
             {errors.title && <span className="error-message">{errors.title}</span>}
           </div>
 
