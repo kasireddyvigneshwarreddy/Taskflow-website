@@ -11,6 +11,7 @@ import { Toast } from './components/Toast';
 import { PlusIcon } from './components/Icons';
 import { generateSampleTasks } from './data/initialTasks';
 import { isOverdue, getTodayString } from './utils/dateUtils';
+import Login from './login';
 
 const STORAGE_KEY = 'taskflow_tasks_v1';
 const THEME_KEY = 'taskflow_theme';
@@ -21,6 +22,7 @@ function App() {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem(THEME_KEY) || 'dark';
   });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Apply theme attribute to html/root
   useEffect(() => {
@@ -257,6 +259,9 @@ function App() {
   const completedCount = tasks.filter((t) => t.status === 'completed').length;
   const completionPercentage =
     tasks.length > 0 ? Math.round((completedCount / tasks.length) * 100) : 0;
+    if (!isLoggedIn) {
+  return <Login onLogin={() => setIsLoggedIn(true)} />;
+}
 
   return (
     <div className="app-layout">
@@ -376,6 +381,7 @@ function App() {
       {/* Toast Notification */}
       <Toast toast={toast} onClose={() => setToast(null)} />
     </div>
+    
   );
 }
 
